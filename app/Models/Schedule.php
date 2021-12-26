@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Schedule extends Model
 {
+	
 	protected $table = 'schedules';
 	public $timestamps = false;
 
@@ -37,6 +38,9 @@ class Schedule extends Model
 
 	protected $fillable = [
 		'scheduling_date',
+		'scheduling_hour',
+		'hour_start',
+		'hour_end',
 		'user_id',
 		'employee_id',
 		'service_id'
@@ -56,4 +60,5 @@ class Schedule extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+
 }

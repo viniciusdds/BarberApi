@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string|null $first_name
  * @property string|null $last_name
+ * @property string|null $image
  * @property int $company_id
  * @property int $user_id
  *
@@ -32,11 +33,11 @@ class Employee extends Model
 	protected $fillable = [
 		'first_name',
 		'last_name',
-		'company_id',
-		'user_id'
+		'image'
 	];
-
-	public function company(){
+	
+	public function company()
+	{
 		return $this->belongsTo(Company::class);
 	}
 
@@ -47,7 +48,7 @@ class Employee extends Model
 
 	public function services()
 	{
-		return $this->hasMany(Service::class);
+		return $this->belongsToMany(Service::class, 'employees_services');
 	}
 
 	public function schedules()

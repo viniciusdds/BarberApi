@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -92,7 +99,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        $service = Service::find($id);
+        $service = Employee::find($id);
 
         if($service){
             $service->delete();

@@ -1,12 +1,28 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * 
+ * @property int $id
+ * @property string $fullname
+ * @property string|null $username
+ * @property string|null $password
+ * @property boolean $image
+ * @property bool|null $activated
+ *
+ * @package App\Models
+ */
 class User extends Authenticatable implements JWTSubject
 {
 	use Notifiable;
@@ -14,6 +30,7 @@ class User extends Authenticatable implements JWTSubject
 	public $timestamps = false;
 
 	protected $casts = [
+		'image' => 'boolean',
 		'activated' => 'bool'
 	];
 
@@ -22,8 +39,10 @@ class User extends Authenticatable implements JWTSubject
 	];
 
 	protected $fillable = [
+		'fullname',
 		'username',
 		'password',
+		'image',
 		'activated'
 	];
 
@@ -37,13 +56,13 @@ class User extends Authenticatable implements JWTSubject
 		return $this->hasMany(Schedule::class);
 	}
 
+	// JWT
 
-	//JWT
 	public function getJWTIdentifier()
     {
         return $this->getKey();
-    }
-
+	}
+	
 	public function getJWTCustomClaims()
     {
         return [];

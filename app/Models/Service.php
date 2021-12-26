@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string|null $name
  * @property float|null $cost
- * @property int $employee_id
+ * @property int $company_id
  *
  * @package App\Models
  */
@@ -25,13 +25,14 @@ class Service extends Model
 
 	protected $casts = [
 		'cost' => 'float',
-		'employee_id' => 'int'
+		'company_id' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
+		'description',
 		'cost',
-		'employee_id'
+		'company_id'
 	];
 
 	public function company()
