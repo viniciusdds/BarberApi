@@ -24,7 +24,7 @@ class ScheduleController extends Controller
         if($schedules){
             return response()->json($schedules);
         }else{
-            return response()->json(['error' => 'Response not found.'], 401);
+            return response()->json(['error' => 'Response not found.']);
         }
     }
 
@@ -39,6 +39,8 @@ class ScheduleController extends Controller
     {
         $schedule = new Schedule();
         $schedule->scheduling_date = $request->scheduling_date;
+        $schedule->hour_start = $request->hour_start;
+        $schedule->hour_end = $request->hour_end;
         $schedule->user_id = $request->user_id;
         $schedule->employee_id = $request->employee_id;
         $schedule->service_id = $request->service_id;
@@ -46,7 +48,7 @@ class ScheduleController extends Controller
         if($schedule){
             return response()->json($schedule);
         }else{
-            return response()->json(['error' => 'Resource not save.'], 401);
+            return response()->json(['error' => 'Resource not save.']);
         }
     }
 
@@ -63,7 +65,7 @@ class ScheduleController extends Controller
         if($schedule){
             return response()->json($schedule);
         }else{
-            return response()->json(['error' => 'Response not found.'], 401);
+            return response()->json(['error' => 'Response not found.']);
         }
     }
 
@@ -87,7 +89,7 @@ class ScheduleController extends Controller
         if($schedule){
             return response()->json($schedule);
         }else{
-            return response()->json(['error' => 'Resource not update.'], 401);
+            return response()->json(['error' => 'Resource not update.']);
         }
     }
 
@@ -105,7 +107,7 @@ class ScheduleController extends Controller
             $schedule->delete();
             return response()->json($schedule);
         }else{
-            return response()->json(['error' => 'Resource not removed.'], 401);
+            return response()->json(['error' => 'Resource not removed.']);
         }
     }
 }
